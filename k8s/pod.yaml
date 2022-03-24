@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: goserver-pod
+  labels:
+    name: goserver-pod
+spec:
+  containers:
+  - name: goserver-container
+    image: fabiolnh/hello-go
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
