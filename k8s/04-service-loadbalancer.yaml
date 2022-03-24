@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: goserver-service
+spec:
+  selector:
+    app: goserver
+  type: LoadBalancer # Generate IP for external access
+  ports:
+  - name: goserver-service
+    port: 80 # Service Port
+    targetPort: 80 # Container App Port
+    protocol: TCP

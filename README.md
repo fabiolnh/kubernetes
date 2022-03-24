@@ -14,4 +14,6 @@ kubectl apply -f k8s/*.yaml
 ```
 
 ## Important:
-1) RepicaSet does not change version of pods during apply. (we have to delete pods)
+- RepicaSet does not change version of pods during apply. (we have to delete pods. That´s why we use Deployment)
+- Deployment -> ReplicaSet -> Pod
+- Service: First Gateway for the Application. Acts like a Load Balancer

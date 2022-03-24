@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: goserver-service
+spec:
+  selector:
+    app: goserver # Label App
+  type: ClusterIP # Internal Server IP (needs execute "kubectl port-forward svc/goserver-service 80:80" for access)
+  ports:
+  - name: goserver-service
+    port: 80 # Service Port
+    targetPort: 80 # Container App Port
+    protocol: TCP
