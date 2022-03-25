@@ -17,6 +17,9 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: fabiolnh/hello-go:latest
+          image: fabiolnh/hello-go:v4
           ports:
             - containerPort: 80
+          env:
+            - name: NAME
+              value: "Fabio"
