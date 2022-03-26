@@ -6,6 +6,7 @@ import "io/ioutil"
 func main() {
 	http.HandleFunc("/configmap",ConfigMap)
 	http.HandleFunc("/",Hello)
+	http.HandleFunc("/secret", Secret)
 	http.ListenAndServe(":80",nil)
 	
 }
@@ -22,4 +23,10 @@ func ConfigMap(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("<h1>Error</h1>"))
 	}
 	w.Write([]byte("<h1>Hello Family: " + string(data) + "</h1>"))
+}
+
+func Secret(w http.ResponseWriter, r *http.Request) {
+	user := os.Getenv("USER")
+	password := os.Getenv("PASSWORD")
+	w.Write([]byte("<h1>User/Password: " + user + " / " + password + "</h1>"))
 }
