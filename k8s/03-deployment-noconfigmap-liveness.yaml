@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goserver-deployment
+  labels: 
+    app: goserver-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: goserver #
+  template:
+    metadata:
+      name: goserver
+      labels:
+        app: goserver
+    spec:
+      containers:
+        - name: goserver
+          image: fabiolnh/hello-go:v5.5
+          livenessProbe:
+            #command # execute a command inside de container
+            #tcp: # try stabilish a connection TCP with the container
+            httpGet: # Do a request Http (the most used)
+              path: /health
+              port: 80 # Container Port
+            periodSeconds: 5
+            failureThreshold: 1 # if gets error 1 time, restart container.
+            timeoutSeconds: 5 # time to get the response from the container
+            successThreshold: 1 # How many times it has to test to confirm that the app is online
+              
+          ports:
+            - containerPort: 80
+          env:
+            - name: NAME
+              value: "Fabio"
