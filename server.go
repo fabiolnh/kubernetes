@@ -2,8 +2,13 @@ package main
 import "net/http"
 import "os"
 import "io/ioutil"
+import "time"
+import "fmt"
+
+var startedAt = time.Now()
 
 func main() {
+	http.HandleFunc("/health", Health)
 	http.HandleFunc("/configmap",ConfigMap)
 	http.HandleFunc("/",Hello)
 	http.HandleFunc("/secret", Secret)
@@ -29,4 +34,16 @@ func Secret(w http.ResponseWriter, r *http.Request) {
 	user := os.Getenv("USER")
 	password := os.Getenv("PASSWORD")
 	w.Write([]byte("<h1>User/Password: " + user + " / " + password + "</h1>"))
+}
+
+func Health(w http.ResponseWriter, r *http.Request) {
+	duration := time.Since(startedAt)
+
+	if duration.Seconds() > 25 {
+		w.WriteHeader(500)
+		w.Write([]byte(fmt.Sprintf("Duration: %v", duration.Seconds())))
+	} else {
+		w.WriteHeader(200)
+		w.Write([]byte("ok"))
+	}
 }

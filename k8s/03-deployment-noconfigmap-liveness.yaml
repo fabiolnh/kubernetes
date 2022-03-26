@@ -18,7 +18,9 @@ spec:
       containers:
         - name: goserver
           image: fabiolnh/hello-go:v5.5
-          livenessProbe:
+          #startupProbe: # The first check before readnessProbe and livenessProbe. Only after this one that these other two will start to count. (IT IS RECOMMENDED TO USE. It says since when the liveNess and readNess can start to check)
+          #readinessProbe: # If gets error, tt takes away the traffic of the container and send to other. OBS: With this one, the access to container gets available only when the health is 200 (same config of the livenessProbe)
+          livenessProbe: # It recreates the container 
             #command # execute a command inside de container
             #tcp: # try stabilish a connection TCP with the container
             httpGet: # Do a request Http (the most used)
@@ -28,6 +30,7 @@ spec:
             failureThreshold: 1 # if gets error 1 time, restart container.
             timeoutSeconds: 5 # time to get the response from the container
             successThreshold: 1 # How many times it has to test to confirm that the app is online
+            initialDelaySeconds: 3 # Wait for seconds to try the first request
               
           ports:
             - containerPort: 80
