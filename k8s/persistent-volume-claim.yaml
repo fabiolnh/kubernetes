@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim # The "Claim" is to request a volume (Usually we use it, instead of the PersistentVolume, because on the clouds we already have persistent volumes)
+metadata:
+  name: goserver-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce

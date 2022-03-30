@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolume # Usually you will not have to create it. Usually you create a "claim" to request a part os this volume.
+metadata:
+  name: mypv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce # More Common! (you can read and write, since you are inside the same node. If a pod is in another node, it cannot access)
+    #- ReadWriteMany (Accessed by more nodes)
