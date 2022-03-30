@@ -18,3 +18,4 @@ kubectl apply -f k8s/*.yaml
 - Deployment -> ReplicaSet -> Pod
 - Service: First Gateway for the Application. Acts like a Load Balancer
 - The object "Secret" is not so safe.
+- Other important things are annotated inside the files
