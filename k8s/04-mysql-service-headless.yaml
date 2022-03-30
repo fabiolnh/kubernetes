@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-h # This name must be the same as the statefulset serviceName
+spec:
+  selector:
+    app: mysql # Label App
+  ports:
+    - port: 3306 # Service Port
+  clusterIP: None # Will resolve the replicas with DNS independently of the number of replicas

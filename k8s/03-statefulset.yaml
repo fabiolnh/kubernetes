@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: StatefulSet # Seems to be identical to the Deployment (with little difference), the difference is that this one can organize the "pods". It garantees the order of the pod creation . When it is deleted, the pods will get deleted from the back to front (5,4,3,2,1)
+metadata:
+  name: mysql
+spec:
+  serviceName: mysql-h # This name must be the same as the Service metadata name (service headless)
+  #podManagementPolicy: Paralel # Instead of creating pods in sequence, this annotation creates in parallel
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mysql  
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
