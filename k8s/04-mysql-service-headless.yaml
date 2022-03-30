@@ -8,3 +8,5 @@ spec:
   ports:
     - port: 3306 # Service Port
   clusterIP: None # Will resolve the replicas with DNS independently of the number of replicas
+
+  # To the request call the pod that we want
