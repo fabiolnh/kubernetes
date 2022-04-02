@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: goserver
-  type: LoadBalancer # Generate IP for external access
+  type: LoadBalancer # Generate IP for external access (When we are using a Ingress, we don´t need to use LoadBalancer. We can use ClusterIP. The Ingress provide an External IP to call the ClusterIP internally)
   ports:
   - name: goserver-service
     port: 80 # Service Port
