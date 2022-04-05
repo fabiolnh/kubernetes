@@ -7,6 +7,7 @@ metadata:
 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role # The role has to be created, otherwise the serviceaccount created above will have all the permissions, and it is a thing that we don´t want.
+# Use kind: ClusterRole for the whole cluster, instead of the namespace
 metadata: 
   name: server-read
 rules:
@@ -23,6 +24,7 @@ rules:
 
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding # The bind betwwen the Role and the ServiceAccount
+# Use kind: ClusterRoleBinding for the whole cluster, instead of the namespace
 metadata:
   name: server-read-bind
 subjects:
