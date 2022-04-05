@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ServiceAccount # the default serviceaccount of the Kubernetes has all the persmissions. So, all the services run on the default. This could be a security issue. That´s why we have to create one.
+metadata:
+  name: server
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role # The role has to be created, otherwise the serviceaccount created above will have all the permissions, and it is a thing that we don´t want.
+metadata: 
+  name: server-read
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services"]
+    verbs: ["get", "watch", "list"]
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "watch", "list"]
+
+    # If anyone who gets access to the pod, he will not be abble to scale the attack with these permissions.
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding # The bind betwwen the Role and the ServiceAccount
+metadata:
+  name: server-read-bind
+subjects:
+- kind: ServiceAccount
+  name: server
+  #namespace: prod
+roleRef:
+  kind: Role
+  name: server-read
+  apiGroup: rbac.authorization.k8s.io/v1
