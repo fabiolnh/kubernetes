@@ -22,7 +22,10 @@ kubectl apply -f k8s/*.yaml
 - Namespace: Contexts. A way to organize the things in kubernetes (ex: each namespace for each squad)
 - Service: First Gateway for the Application. Acts like a Load Balancer. It generates a network for the pods to communicate between them, too.
 - Ingress: The unique entry to the application. In Ingress, we can configure some routes to select which service is to redirect the entry, based on the path, like a reserve proxy.
-- The "Service" object is used to expose internal services of the cluster, while the "Ingress" object is used to expose services to the world
+- The "Service" object is used to expose internal services of the cluster, while the "Ingress" object is used to expose services to the world.
+- Types of "Service":
+  * ClusterIP: Internal IP (only accessible within the cluster).
+  * LoadBalancer: ClusterIP + External Load Balancer (commonly provided by the cloud). This allows you to access your application from the external world.
 - ServiceAccount: A way to secure what the pod may access. If someone breaks into the pod, if the pod is using the default ServiceAccount of the Kubernetes, it will get access to everything in kubernetes. The best way is to create a different ServiceAccount to limit what it can do. Another way to use the ServiceAccount is to link a role to access some service in the cloud 
 - HPA: Horizontal Pod Autoscaling
 - Rolling Update: A deploy way. By default, this is the default. You do not need to specify. Use it with livenessProbe and readnessProbe to get Zero-Downtime in deploys and in runtime.
