@@ -15,7 +15,7 @@ kubectl apply -f k8s/*.yaml
 
 ## Important:
 - Pod: A Kubernetes Object that can have one or more containers
-- ReplicaSet: it defines the number of a pod and recreates it when it is down
+- ReplicaSet: it defines the number of a pod and recreates it when it is down. It controls the number of the pods.
   * It is similar to "Replication Controller", however, ReplicaSet is newer (apps/v1) and has the "selector", to select the labels
 - Deployment: It is how the application will be deployed. RepicaSet does not change versions of pods during applyment (you have to stop and start again), that's why we use Deployment. With deployment, we can doo rolling update, pause, resume, etc.
   * It automatically creates a ReplicaSet.
