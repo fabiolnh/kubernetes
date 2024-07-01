@@ -35,3 +35,24 @@ kubectl apply -f k8s/*.yaml
 - Probes: Ex: If the container is down (if /health returns a code differently from 200) it restarts the container. (POC: https://github.com/fabiolnh/kubernetes/blob/main/k8s/03-deployment-noconfigmap-liveness.yaml)
 - OBS: The object "Secret" is not so safe.
 - Other important things are annotated inside the files
+
+
+- Some insteresting commands:
+```
+# Creating a Pod
+kubectl run nginx --image=nginx
+# Create a deployment
+kubectl create deployment --image=nginx nginx
+# Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
+kubectl run nginx --image=nginx --dry-run=client -o yaml
+# Show a lot of things:
+kubectl get all
+# Generate Deployment YAML file (-o yaml). Don't create it(--dry-run)
+kubectl create deployment --image=nginx nginx --dry-run -o yaml
+# Generate Deployment with 4 Replicas
+kubectl create deployment nginx --image=nginx --replicas=4
+# Another way to do this is to save the YAML definition to a file and modify
+kubectl create deployment nginx --image=nginx--dry-run=client -o yaml > nginx-deployment.yaml
+# Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379 (you can use dry-run and and in another file, too.)
+kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
+```
