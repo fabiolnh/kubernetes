@@ -18,6 +18,7 @@ kubectl apply -f k8s/*.yaml
 - ReplicaSet: it defines the number of a pod and recreates it when it is down
   * It is similar to "Replication Controller", however, ReplicaSet is newer (apps/v1) and has the "selector", to select the labels
 - Deployment: It is how the application will be deployed. RepicaSet does not change versions of pods during applyment (you have to stop and start again), that's why we use Deployment. With deployment, we can doo rolling update, pause, resume, etc.
+  * It automatically creates a ReplicaSet.
 - StatefulSet: Usualy the same as ReplicaSet, however it is used with persistent storage
 - DaemonSet: One pod will be running in each node (ex: 3 nodes will have 3 pods, 1 for each node) 
 - Namespace: Contexts. A way to organize the things in kubernetes (ex: each namespace for each squad)
