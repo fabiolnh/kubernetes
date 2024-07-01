@@ -17,9 +17,9 @@ kubectl apply -f k8s/*.yaml
 - Pod: A Kubernetes Object that can have one or more containers
 - ReplicaSet: it defines the number of a pod and recreates it when it is down
   * It is similar to "Replication Controller", however, ReplicaSet is newer and has the "selector", to select the labels
+- Deployment: It is how the application will be deployed. RepicaSet does not change versions of pods during applyment (you have to stop and start again), that's why we use Deployment. With deployment, we can doo rolling update, pause, resume, etc.
 - StatefulSet: Usualy the same as ReplicaSet, however it is used with persistent storage
 - DaemonSet: One pod will be running in each node (ex: 3 nodes will have 3 pods, 1 for each node) 
-- Deployment: RepicaSet does not change versions of pods during applyment (you have to stop and start again), that's why we use Deployment
 - Namespace: Contexts. A way to organize the things in kubernetes (ex: each namespace for each squad)
 - Service: First Gateway for the Application. Acts like a Load Balancer. It generates a network for the pods to communicate between them, too.
 - Ingress: The unique entry to the application. In Ingress, we can configure some routes to select which service is to redirect the entry, based on the path, like a reserve proxy.
