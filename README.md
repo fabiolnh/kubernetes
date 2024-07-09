@@ -58,6 +58,6 @@ kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o ya
 ```
 - Entrypoint VS RUN in manifest:
 ```
-ENTRYPOINT = command
-RUN = args
+command (overrides the ENTRYPOINT command)
+args (overrides the RUN command)
 ```
