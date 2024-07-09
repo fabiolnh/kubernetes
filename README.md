@@ -56,8 +56,8 @@ kubectl create deployment nginx --image=nginx--dry-run=client -o yaml > nginx-de
 # Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379 (you can use dry-run and and in another file, too.)
 kubectl expose pod redis --port=6379 --name redis-service --dry-run=client -o yaml
 ```
-- Entrypoint VS RUN in manifest:
+- Entrypoint VS CMD in manifest:
 ```
 command (overrides the ENTRYPOINT command)
-args (overrides the RUN command)
+args (overrides the CMD command)
 ```
